@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <Spinner
-        android:id="@+id/spinner_lang"
+        android:id="@+id/spinner_lang_from"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         </Spinner>
@@ -29,7 +29,7 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/spinner_lang_to"
         android:layout_gravity="center_horizontal" />
 
     <EditText

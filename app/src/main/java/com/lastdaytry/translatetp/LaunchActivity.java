@@ -24,17 +24,9 @@ public class LaunchActivity extends Activity {
         setContentView(R.layout.activity_launch);
 
 
-        Intent intentTranslateService = new Intent(this, TranslateService.class);
+        Intent intentTranslateService = new Intent(LaunchActivity.this, TranslateService.class);
 
         startService(intentTranslateService);
-//
-//        startService(intentTranslateService.putExtra("time", 3).putExtra("task",
-//                "Погладить кота"));
-//        startService(intentTranslateService.putExtra("time", 1).putExtra("task",
-//                "Покормить кота"));
-//        startService(intentTranslateService.putExtra("time", 4).putExtra("task",
-//                "Поиграть с котом"));
-
 
 
         mHandler.postDelayed(new Runnable() {
