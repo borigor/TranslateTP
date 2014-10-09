@@ -49,11 +49,9 @@ public class FragmentForms extends Fragment {
         IntentFilter intentFilter = new IntentFilter(BROADCAST_ACTION);
         getActivity().registerReceiver(br, intentFilter);
 
-
-
         return view;
     }
-
+    @Override
     public void onResume() {
         super.onResume();
     }

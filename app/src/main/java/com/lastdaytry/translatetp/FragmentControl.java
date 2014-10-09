@@ -129,6 +129,4 @@ public class FragmentControl extends Fragment{
         super.onResume();
     }
 
-
-
 }
