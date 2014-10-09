@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">TranslateTP</string>
     <string name="label_loading">Loading</string>
+    <string name="button_translate">Translate</string>
+    <string name="button_change_lang">Change languages</string>
 </resources>

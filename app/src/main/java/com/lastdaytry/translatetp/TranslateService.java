@@ -28,6 +28,7 @@ public class TranslateService extends IntentService {
     private static final String apiKey = "trnsl.1.1.20141006T210046Z.6ef88adae03898aa.3ec04c1204024ebfa9e4cc5a75bac6fc1e9cd561";
     private static List<String> langList = new ArrayList<String>();
     private static HashMap<String, String> langFullNameMap = new HashMap<String, String>();
+    private static HashMap<String, String> langShortNameMap = new HashMap<String, String>();
 
 
     public TranslateService() {
@@ -44,6 +45,35 @@ public class TranslateService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         Log.v(LOG_TAG, "onHandleIntent");
+        Log.v(LOG_TAG, intent.getStringExtra("name"));
+
+        if ("list".equals(intent.getStringExtra("name"))) {
+            apiGetLangs();
+        } else if ("translate".equals(intent.getStringExtra("name"))) {
+
+            String text = intent.getStringExtra("text");
+            String lang = intent.getStringExtra("lang");
+
+            apiTranslate(text, lang);
+        }
+
+    }
+
+    public static List<String> getLangList() {
+        return langList;
+    }
+
+    public static HashMap<String, String> getLangFullNameMap() {
+        return langFullNameMap;
+    }
+
+    public static HashMap<String, String> getLangShortNameMap() {
+        return langShortNameMap;
+    }
+
+    public void apiGetLangs() {
+
+        Log.v(LOG_TAG, "get Api lang list");
 
         HttpURLConnection connection = null;
         try {
@@ -86,18 +116,55 @@ public class TranslateService extends IntentService {
                 String lang = (String) it.next();
                 String langFull = (String) langs.get(lang);
                 langFullNameMap.put(lang, langFull);
+                langShortNameMap.put(langFull, lang);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-    public static List<String> getLangList() {
-        return langList;
-    }
+    public void apiTranslate(String text, String lang) {
 
-    public static HashMap<String, String> getLangFullNameMap() {
-        return langFullNameMap;
+        HttpURLConnection connection = null;
+        try {
+            URL url = new URL("https://translate.yandex.net/api/v1.5/tr.json/translate?key="  + apiKey
+                    + "&text=" + text + "&lang=" + lang);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+
+            InputStream is = connection.getInputStream();
+
+            // Convert the InputStream into a string
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            String line = null;
+            try {
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line).append("\n");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            String dataAsString = sb.toString();
+            Log.v(LOG_TAG, dataAsString);
+
+            Log.v(LOG_TAG, "sendBroadcast");
+            Intent intent = new Intent(FragmentForms.BROADCAST_ACTION);
+            intent.putExtra("result", dataAsString);
+            sendBroadcast(intent);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

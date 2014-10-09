@@ -26,6 +26,8 @@ public class LaunchActivity extends Activity {
 
         Intent intentTranslateService = new Intent(LaunchActivity.this, TranslateService.class);
 
+        intentTranslateService.putExtra("name", "list");
+
         startService(intentTranslateService);
 
 
