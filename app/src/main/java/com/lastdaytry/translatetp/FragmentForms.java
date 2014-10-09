@@ -41,10 +41,15 @@ public class FragmentForms extends Fragment {
 
                 String result = intent.getStringExtra("result");
                 resultText.setText(result);
+
+
             }
         };
+
         IntentFilter intentFilter = new IntentFilter(BROADCAST_ACTION);
         getActivity().registerReceiver(br, intentFilter);
+
+
 
         return view;
     }
@@ -53,4 +58,8 @@ public class FragmentForms extends Fragment {
         super.onResume();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
     }
+}

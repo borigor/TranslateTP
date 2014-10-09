@@ -70,6 +70,26 @@ public class FragmentControl extends Fragment{
             }
         });
 
+
+        buttonChangeLangs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v(LOG_TAG, "onClick ChangeLangs");
+
+                String langFrom = (String) spinnerFrom.getSelectedItem();
+                String langTo = (String) spinnerTo.getSelectedItem();
+                Log.v(LOG_TAG, langTo);
+                Log.v(LOG_TAG, langFrom);
+
+                int spinnerPosition = dataSpinnerAdapter.getPosition(langTo);
+                spinnerFrom.setSelection(spinnerPosition);
+
+                spinnerPosition = dataSpinnerAdapter.getPosition(langFrom);
+                spinnerTo.setSelection(spinnerPosition);
+
+            }
+        });
+
         listFullNameLangs = new ArrayList<String>();
         langFullNameMap = TranslateService.getLangFullNameMap();
         langShortNameMap = TranslateService.getLangShortNameMap();

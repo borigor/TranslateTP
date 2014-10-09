@@ -2,6 +2,7 @@ package com.lastdaytry.translatetp;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -154,7 +155,13 @@ public class TranslateService extends IntentService {
                     e.printStackTrace();
                 }
             }
-            String dataAsString = sb.toString();
+            String dataAsString1 = sb.toString();
+            String dataAsString = new String(dataAsString1.getBytes("UTF-8"));
+            JSONObject jsonObject = new JSONObject(dataAsString);
+            dataAsString = jsonObject.getString("text");
+            int size = dataAsString.length() - 2;
+            dataAsString = dataAsString.substring(2, size);
+
             Log.v(LOG_TAG, dataAsString);
 
             Log.v(LOG_TAG, "sendBroadcast");
