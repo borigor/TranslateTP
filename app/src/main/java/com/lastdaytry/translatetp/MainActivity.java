@@ -29,7 +29,7 @@ public class MainActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//
+
 //        br = new BroadcastReceiver() {
 //            @Override
 //            public void onReceive(Context context, Intent intent) {

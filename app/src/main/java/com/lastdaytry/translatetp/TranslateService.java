@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -130,8 +131,10 @@ public class TranslateService extends IntentService {
 
         HttpURLConnection connection = null;
         try {
+
+            String textUTF8 = URLEncoder.encode(text, "UTF-8");
             URL url = new URL("https://translate.yandex.net/api/v1.5/tr.json/translate?key="  + apiKey
-                    + "&text=" + text + "&lang=" + lang);
+                    + "&text=" + textUTF8 + "&lang=" + lang);
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
