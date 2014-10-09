@@ -36,7 +36,6 @@ public class ListLangActivity extends ListActivity {
         List<String> langList = TranslateService.getLangList();
         String langsToFrom = langList.get(position);
         intentMainActivity.putExtra("langsToFrom", langsToFrom);
-//        Log.v(LOG_TAG, langsToFrom);
         startActivity(intentMainActivity);
     }
 }

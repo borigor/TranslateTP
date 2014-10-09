@@ -25,29 +25,12 @@ public class FragmentForms extends Fragment {
 
     public static final String BROADCAST_ACTION = "broadcastAction";
 
-    BroadcastReceiver br;
-
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_forms, null);
 
         editText = (EditText) view.findViewById(R.id.editText);
         resultText = (EditText) view.findViewById(R.id.resultText);
-
-        br = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Log.v(LOG_TAG, "onReceive");
-
-                String result = intent.getStringExtra("result");
-                resultText.setText(result);
-
-
-            }
-        };
-
-        IntentFilter intentFilter = new IntentFilter(BROADCAST_ACTION);
-        getActivity().registerReceiver(br, intentFilter);
 
         return view;
     }

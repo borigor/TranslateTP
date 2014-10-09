@@ -52,8 +52,6 @@ public class FragmentControl extends Fragment{
                 String langFrom = langShortNameMap.get(spinnerFrom.getSelectedItem());
                 String langTo = langShortNameMap.get(spinnerTo.getSelectedItem());
 
-//                View formView = getActivity().getFragmentManager().findFragmentById(R.id.container_forms).getView();
-//                EditText editText = (EditText) formView.findViewById(R.id.editText);
                 EditText editText = (EditText) getActivity().getFragmentManager().findFragmentById(R.id.container_forms).getView().findViewById(R.id.editText);
                 String text = String.valueOf(editText.getText());
 
