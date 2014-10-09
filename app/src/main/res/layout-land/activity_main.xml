@@ -10,14 +10,14 @@
         android:id="@+id/container_control"
         class="com.lastdaytry.translatetp.FragmentControl"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_weight="1" />
 
     <fragment
         android:id="@+id/container_forms"
         class="com.lastdaytry.translatetp.FragmentForms"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_weight="1" />
 
 </LinearLayout>
